@@ -1,0 +1,274 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!doctype html>\
+<html lang="en">\
+<head>\
+  <meta charset="utf-8" />\
+  <meta name="viewport" content="width=device-width, initial-scale=1" />\
+  <title>Be My Valentine?</title>\
+  <style>\
+    :root\{\
+      --bg1:#ffdde7;\
+      --bg2:#fff1f5;\
+      --card:#ffffffcc;\
+      --text:#2b1b1f;\
+      --yes:#ff3b7a;\
+      --no:#4b5563;\
+    \}\
+\
+    *\{ box-sizing:border-box; \}\
+    body\{\
+      margin:0;\
+      min-height:100vh;\
+      display:grid;\
+      place-items:center;\
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;\
+      color:var(--text);\
+      background: radial-gradient(circle at top, var(--bg2), var(--bg1));\
+      overflow:hidden;\
+    \}\
+\
+    /* floating hearts background */\
+    .hearts\{\
+      position:fixed;\
+      inset:0;\
+      pointer-events:none;\
+      z-index:0;\
+      overflow:hidden;\
+    \}\
+    .heart\{\
+      position:absolute;\
+      width:18px;\
+      height:18px;\
+      transform: rotate(45deg);\
+      opacity:.25;\
+      animation: floatUp linear infinite;\
+      filter: blur(.1px);\
+    \}\
+    .heart::before,\
+    .heart::after\{\
+      content:"";\
+      position:absolute;\
+      width:18px; height:18px;\
+      background: currentColor;\
+      border-radius:50%;\
+    \}\
+    .heart::before\{ left:-9px; top:0; \}\
+    .heart::after\{ left:0; top:-9px; \}\
+    .heart\{ background: currentColor; \}\
+\
+    @keyframes floatUp\{\
+      from\{ transform: translateY(110vh) rotate(45deg); \}\
+      to\{ transform: translateY(-20vh) rotate(45deg); \}\
+    \}\
+\
+    /* main card */\
+    .card\{\
+      position:relative;\
+      z-index:1;\
+      width:min(520px, 92vw);\
+      padding:28px 22px;\
+      border-radius:22px;\
+      background:var(--card);\
+      backdrop-filter: blur(10px);\
+      border:1px solid #ffffffaa;\
+      box-shadow: 0 18px 60px rgba(0,0,0,.12);\
+      text-align:center;\
+    \}\
+\
+    h1\{\
+      margin:0 0 6px;\
+      font-size: clamp(28px, 4vw, 40px);\
+      letter-spacing:.2px;\
+    \}\
+    .sub\{\
+      margin:0 0 18px;\
+      font-size: 16px;\
+      opacity:.85;\
+    \}\
+\
+    .emoji\{\
+      font-size: 42px;\
+      margin: 10px 0 16px;\
+      display:inline-block;\
+      animation: pulse 1.25s ease-in-out infinite;\
+    \}\
+    @keyframes pulse\{\
+      0%,100%\{ transform: scale(1); \}\
+      50%\{ transform: scale(1.08); \}\
+    \}\
+\
+    .btnRow\{\
+      display:flex;\
+      gap:14px;\
+      justify-content:center;\
+      align-items:center;\
+      flex-wrap:wrap;\
+      margin-top: 12px;\
+      position:relative;\
+    \}\
+\
+    button\{\
+      border:none;\
+      padding: 12px 18px;\
+      border-radius: 999px;\
+      font-size: 16px;\
+      cursor:pointer;\
+      transition: transform .12s ease, filter .12s ease;\
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);\
+      user-select:none;\
+    \}\
+    button:hover\{ transform: translateY(-2px); filter: brightness(1.02); \}\
+    button:active\{ transform: translateY(0px) scale(.99); \}\
+\
+    #yesBtn\{ background: var(--yes); color:white; \}\
+    #noBtn\{\
+      background: #eef2f7;\
+      color: var(--no);\
+      position:relative;\
+    \}\
+\
+    .result\{\
+      margin-top:18px;\
+      font-size: 18px;\
+      font-weight: 600;\
+      min-height: 28px;\
+    \}\
+\
+    /* little confetti hearts */\
+    .confetti\{\
+      position:fixed;\
+      inset:0;\
+      pointer-events:none;\
+      z-index:2;\
+      overflow:hidden;\
+    \}\
+    .confetti .c-heart\{\
+      position:absolute;\
+      width:14px;\
+      height:14px;\
+      transform: rotate(45deg);\
+      animation: drop 1.4s ease-in forwards;\
+      opacity:.9;\
+    \}\
+    .confetti .c-heart::before,\
+    .confetti .c-heart::after\{\
+      content:"";\
+      position:absolute;\
+      width:14px; height:14px;\
+      background: currentColor;\
+      border-radius:50%;\
+    \}\
+    .confetti .c-heart::before\{ left:-7px; top:0; \}\
+    .confetti .c-heart::after\{ left:0; top:-7px; \}\
+    .confetti .c-heart\{ background: currentColor; \}\
+\
+    @keyframes drop\{\
+      0%\{ transform: translateY(-10vh) rotate(45deg) scale(.9); opacity:0; \}\
+      10%\{ opacity:1; \}\
+      100%\{ transform: translateY(110vh) rotate(45deg) scale(1.15); opacity:0; \}\
+    \}\
+  </style>\
+</head>\
+<body>\
+  <div class="hearts" id="hearts"></div>\
+  <div class="confetti" id="confetti"></div>\
+\
+  <main class="card">\
+    <div class="emoji">\uc0\u55357 \u56472 </div>\
+    <h1>Will you be my Valentine?</h1>\
+    <p class="sub">Hey husband\'85 I have one very important question \uc0\u55358 \u56698 \u10084 \u65039 </p>\
+\
+    <div class="btnRow" id="btnRow">\
+      <button id="yesBtn">Yes \uc0\u55357 \u56470 </button>\
+      <button id="noBtn">No \uc0\u55357 \u56899 </button>\
+    </div>\
+\
+    <div class="result" id="result"></div>\
+  </main>\
+\
+  <script>\
+    // --- Background hearts ---\
+    const heartsWrap = document.getElementById("hearts");\
+    const COLORS = ["#ff3b7a","#ff6fa3","#ff2d55","#ff8fbf","#ff4d6d"];\
+\
+    function makeBgHeart()\{\
+      const h = document.createElement("div");\
+      h.className = "heart";\
+      h.style.left = Math.random()*100 + "vw";\
+      h.style.color = COLORS[Math.floor(Math.random()*COLORS.length)];\
+      const size = 10 + Math.random()*18;\
+      h.style.width = size + "px";\
+      h.style.height = size + "px";\
+      h.style.opacity = (0.12 + Math.random()*0.25).toFixed(2);\
+      h.style.animationDuration = (6 + Math.random()*10).toFixed(1) + "s";\
+      h.style.animationDelay = (-Math.random()*10).toFixed(1) + "s";\
+      heartsWrap.appendChild(h);\
+\
+      // remove later so DOM doesn't grow forever\
+      setTimeout(()=>h.remove(), 17000);\
+    \}\
+\
+    // start with a bunch, then keep spawning\
+    for(let i=0;i<40;i++) makeBgHeart();\
+    setInterval(makeBgHeart, 220);\
+\
+    // --- Buttons logic ---\
+    const yesBtn = document.getElementById("yesBtn");\
+    const noBtn = document.getElementById("noBtn");\
+    const result = document.getElementById("result");\
+    const btnRow = document.getElementById("btnRow");\
+    const confetti = document.getElementById("confetti");\
+\
+    function confettiHearts()\{\
+      for(let i=0;i<40;i++)\{\
+        const c = document.createElement("div");\
+        c.className = "c-heart";\
+        c.style.left = Math.random()*100 + "vw";\
+        c.style.color = COLORS[Math.floor(Math.random()*COLORS.length)];\
+        const size = 10 + Math.random()*14;\
+        c.style.width = size + "px";\
+        c.style.height = size + "px";\
+        c.style.animationDuration = (1.0 + Math.random()*1.0).toFixed(2) + "s";\
+        c.style.animationDelay = (Math.random()*0.25).toFixed(2) + "s";\
+        confetti.appendChild(c);\
+        setTimeout(()=>c.remove(), 2200);\
+      \}\
+    \}\
+\
+    yesBtn.addEventListener("click", () => \{\
+      result.textContent = "YAY!! \uc0\u55357 \u56877 \u55357 \u56471  I love you!!! Happy Valentine\'92s Day!";\
+      confettiHearts();\
+      noBtn.disabled = true;\
+      yesBtn.textContent = "You said YES \uc0\u55357 \u56472 ";\
+    \});\
+\
+    // Make "No" button dodge the click\
+    function dodge()\{\
+      const rect = btnRow.getBoundingClientRect();\
+      const btnRect = noBtn.getBoundingClientRect();\
+\
+      const maxX = rect.width - btnRect.width;\
+      const maxY = rect.height - btnRect.height;\
+\
+      // allow it to move around within the row area (and a bit beyond)\
+      const x = Math.random() * (maxX + 80) - 40;\
+      const y = Math.random() * (maxY + 60) - 30;\
+\
+      noBtn.style.transform = `translate($\{x\}px, $\{y\}px)`;\
+    \}\
+\
+    noBtn.addEventListener("mouseenter", dodge);\
+    noBtn.addEventListener("click", () => \{\
+      result.textContent = "No is not an option \uc0\u55357 \u56844 \u55357 \u56478 ";\
+      dodge();\
+    \});\
+  </script>\
+</body>\
+</html>\
+}
